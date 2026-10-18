@@ -1,0 +1,36 @@
+#include "tgaimage.h"
+#include <cmath>
+#include<iostream>
+
+constexpr TGAColor white = {255, 255, 255, 255};
+const double PI = 3.1415926535;
+
+int main(int argc, char **argv)
+{
+    constexpr int width = 256;
+    constexpr int height = 256;
+    TGAImage framebuffer(width, height, TGAImage::RGB);
+
+    double cy;
+    double cx = cy = width / 2;
+    double radius = 124;
+
+    double circum = 2 * PI * radius;
+    circum = ceil(circum);
+
+    double angle = (double)1 / ((double)360 / circum);
+
+    double radian = angle * 0.01745329;
+
+    for (double i = 0; i <= 6.2831844; i += radian)
+    {
+        double ay = std::round(cx + radius * std::sin(i));
+        double ax = std::round(cy + radius * std::cos(i));
+
+        framebuffer.set(ax, ay, white);
+    }
+
+    framebuffer.write_tga_file("framebuffer.tga");
+    
+    return 0;
+}
