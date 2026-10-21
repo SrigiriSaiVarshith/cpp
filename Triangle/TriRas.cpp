@@ -5,6 +5,7 @@
 
 constexpr TGAColor white = {255, 255, 255, 255};
 
+/*Signed area*/
 int CalcArea(int ax, int ay, int bx, int by, int cx, int cy)
 {
     return (by - ay) * (bx + ax) + (cy - by) * (cx + bx) + (ay - cy) * (ax + cx);
